@@ -50,7 +50,15 @@ export function VisualStories() {
             <li key={story.alt} className="w-[72vw] shrink-0 sm:w-[420px]">
               <div className="overflow-hidden rounded-[1.25rem] bg-pill">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={asset(story.image)} alt={story.alt} className="aspect-[4/5] w-full object-cover" />
+                <img
+                  src={asset(story.image)}
+                  alt={story.alt}
+                  width={840}
+                  height={1050}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/5] w-full object-cover"
+                />
               </div>
             </li>
           ))}

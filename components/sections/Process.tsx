@@ -72,11 +72,25 @@ function ProcessImage({
     1,
     index === 3 ? 1 : 0,
   ]);
+  const visibility = useTransform(opacity, (value) => (value < 0.04 ? "hidden" : "visible"));
 
   return (
-    <motion.div className="absolute inset-0" style={{ opacity: reduce ? (index === 0 ? 1 : 0) : opacity }}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} className="h-full w-full object-cover" />
+    <motion.div
+      className="absolute inset-0"
+      style={{ opacity: reduce ? (index === 0 ? 1 : 0) : opacity, visibility: reduce ? (index === 0 ? "visible" : "hidden") : visibility }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        width={1200}
+        height={900}
+        loading={index === 0 ? "eager" : "lazy"}
+        decoding="async"
+        onError={(event) => {
+          event.currentTarget.style.visibility = "hidden";
+        }}
+        className="h-full w-full object-cover"
+      />
     </motion.div>
   );
 }

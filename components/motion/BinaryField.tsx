@@ -51,32 +51,36 @@ export function BinaryField() {
     const resize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const width = parent.clientWidth;
       const height = parent.clientHeight;
+      const dpr = width < 700 ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      size = width < 700 ? 13 : 15;
+      size = width < 700 ? 18 : 16;
       cols = Math.ceil(width / size);
       rows = Math.ceil(height / size);
       cells = Array.from({ length: cols * rows }, glyph);
       paint(ctx, width, height, cells, cols, rows, size);
     };
 
+    let visible = true;
+
     const tick = () => {
       if (!running) return;
-      frame += 1;
-      if (frame % 4 === 0) {
-        const mutations = Math.max(24, Math.floor(cells.length * 0.018));
-        for (let i = 0; i < mutations; i++) {
-          cells[(Math.random() * cells.length) | 0] = glyph();
-        }
-        const parent = canvas.parentElement;
-        if (parent) {
-          paint(ctx, parent.clientWidth, parent.clientHeight, cells, cols, rows, size);
+      if (visible && !document.hidden) {
+        frame += 1;
+        if (frame % 8 === 0) {
+          const mutations = Math.max(16, Math.floor(cells.length * 0.01));
+          for (let i = 0; i < mutations; i++) {
+            cells[(Math.random() * cells.length) | 0] = glyph();
+          }
+          const parent = canvas.parentElement;
+          if (parent) {
+            paint(ctx, parent.clientWidth, parent.clientHeight, cells, cols, rows, size);
+          }
         }
       }
       raf = window.requestAnimationFrame(tick);
@@ -85,6 +89,14 @@ export function BinaryField() {
     resize();
     const observer = new ResizeObserver(resize);
     if (canvas.parentElement) observer.observe(canvas.parentElement);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = !!entry?.isIntersecting;
+      },
+      { threshold: 0 },
+    );
+    io.observe(canvas);
 
     const onVis = () => {
       running = document.visibilityState === "visible";
@@ -99,6 +111,7 @@ export function BinaryField() {
       running = false;
       window.cancelAnimationFrame(raf);
       observer.disconnect();
+      io.disconnect();
       document.removeEventListener("visibilitychange", onVis);
     };
   }, [reduce]);

@@ -1,5 +1,6 @@
 import { FadeIn } from "@/components/motion/FadeIn";
 import { stackLogos } from "@/lib/content";
+import { asset } from "@/lib/paths";
 
 export function LogoMarquee() {
   return (
@@ -16,8 +17,12 @@ export function LogoMarquee() {
         {stackLogos.map((logo) => (
           <div key={logo.name} className="flex items-center justify-center gap-3">
             <img
-              src={logo.src}
+              src={asset(logo.src)}
               alt=""
+              width={40}
+              height={40}
+              loading="lazy"
+              decoding="async"
               className="h-9 w-9 object-contain brightness-0 invert sm:h-10 sm:w-10"
             />
             <span className="text-xl font-medium tracking-tight sm:text-2xl">{logo.name}</span>

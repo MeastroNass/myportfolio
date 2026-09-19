@@ -73,6 +73,10 @@ export function Projects() {
                 <img
                   src={asset(project.image)}
                   alt={project.alt}
+                  width={960}
+                  height={660}
+                  loading="lazy"
+                  decoding="async"
                   className="aspect-[16/11] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/20 to-transparent" />
@@ -132,6 +136,9 @@ function ProjectDialog({ project, onClose }: { project: Project | null; onClose:
             <img
               src={asset(project.image)}
               alt={project.alt}
+              width={960}
+              height={540}
+              decoding="async"
               className="aspect-[16/9] w-full rounded-2xl object-cover"
             />
             <p className="mt-5 text-[11px] uppercase tracking-[0.22em] text-accent">{project.category}</p>

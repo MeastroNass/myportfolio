@@ -34,22 +34,19 @@ export const hero = {
   secondaryCta: { href: "https://wa.me/2348122964973", label: "Message on WhatsApp" },
 };
 
-const si = (slug: string) =>
-  `https://cdn.jsdelivr.net/npm/simple-icons@15/icons/${slug}.svg`;
-
 export const stackLogos = [
-  { name: "React", src: si("react") },
-  { name: "OpenAI", src: si("openai") },
-  { name: "Perplexity", src: si("perplexity") },
-  { name: "Next.js", src: si("nextdotjs") },
-  { name: "Claude", src: si("claude") },
-  { name: "Grok", src: "https://cdn.worldvectorlogo.com/logos/grok-1.svg" },
-  { name: "TypeScript", src: si("typescript") },
-  { name: "Node.js", src: si("nodedotjs") },
-  { name: "Django", src: si("django") },
-  { name: "PostgreSQL", src: si("postgresql") },
-  { name: "AWS", src: "https://cdn.jsdelivr.net/npm/simple-icons@13/icons/amazonwebservices.svg" },
-  { name: "Git", src: si("git") },
+  { name: "React", src: "/stack/react.svg" },
+  { name: "OpenAI", src: "/stack/openai.svg" },
+  { name: "Perplexity", src: "/stack/perplexity.svg" },
+  { name: "Next.js", src: "/stack/nextdotjs.svg" },
+  { name: "Claude", src: "/stack/claude.svg" },
+  { name: "Grok", src: "/stack/grok.svg" },
+  { name: "TypeScript", src: "/stack/typescript.svg" },
+  { name: "Node.js", src: "/stack/nodedotjs.svg" },
+  { name: "Django", src: "/stack/django.svg" },
+  { name: "PostgreSQL", src: "/stack/postgresql.svg" },
+  { name: "AWS", src: "/stack/amazonwebservices.svg" },
+  { name: "Git", src: "/stack/git.svg" },
 ] as const;
 
 export const projects = [
@@ -96,8 +93,7 @@ export const projects = [
     category: "Transport",
     href: "",
     year: "2025",
-    image:
-      "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1600&q=80",
+    image: "/work/shuttle.jpg",
     alt: "Coach bus on a road at golden hour",
     summary:
       "A transport operations platform that replaced manual booking with online ride orders, dispatch tracking and automated workflows.",
@@ -133,8 +129,7 @@ export const projects = [
     category: "Payments",
     href: "https://cafehexa.com",
     year: "2025",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80",
+    image: "/work/checkout.jpg",
     alt: "Card payment at a counter",
     summary:
       "Paystack wired into Hexa Cafe so online orders, inventory and settlement stay in one loop instead of a spreadsheet after the fact.",
@@ -260,29 +255,25 @@ export const processSteps = [
   {
     title: "Discover",
     body: "Map the current process, the people who run it, and the constraints that actually matter — time, money, and the tools already in place.",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80",
+    image: "/process/discover.jpg",
     alt: "Notebooks and laptop during discovery",
   },
   {
     title: "Define",
     body: "Turn that picture into a thin slice: data model, screens, and the one workflow we will prove first.",
-    image:
-      "https://images.unsplash.com/photo-1581291518857-4d8590470ba6?auto=format&fit=crop&w=1400&q=80",
+    image: "/process/define.jpg",
     alt: "Wireframes on a desk",
   },
   {
     title: "Create",
     body: "Build the interface, API, and database together. Ship to a staging URL early so feedback is on a real product, not a slide.",
-    image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1400&q=80",
+    image: "/process/create.jpg",
     alt: "Code on a laptop screen",
   },
   {
     title: "Deliver",
     body: "Deploy, document, and hand over. Cloud or on-prem, with CI/CD so the next change is not a weekend fire drill.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
+    image: "/process/deliver.jpg",
     alt: "Dashboard charts after launch",
   },
 ] as const;

@@ -59,6 +59,10 @@ export function Hero() {
               <img
                 src={asset("/nasiru.jpg")}
                 alt="Nasiru Lawal Kwargana"
+                width={576}
+                height={1024}
+                fetchPriority="high"
+                decoding="async"
                 className="aspect-[5/6] w-full object-cover object-[center_8%]"
               />
             </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Instrument_Serif, Syne } from "next/font/google";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/lib/content";
+import { asset } from "@/lib/paths";
 import "./globals.css";
 
 const geist = Geist({
@@ -35,6 +36,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" as="image" href={asset("/nasiru.jpg")} fetchPriority="high" />
+      </head>
       <body className={`${geist.variable} ${instrument.variable} ${syne.variable} font-sans antialiased`}>
         <SmoothScroll />
         <a
