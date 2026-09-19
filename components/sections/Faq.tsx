@@ -12,8 +12,8 @@ export function Faq() {
   return (
     <section className="mx-auto max-w-3xl px-5 py-16 md:px-8 md:py-24">
       <FadeIn>
-        <p className="text-[11px] uppercase tracking-[0.22em] text-accent">FAQ</p>
-        <h2 className="mt-3 font-serif text-4xl">Questions, answered.</h2>
+        <h2 className="font-display text-4xl font-extrabold uppercase tracking-tight">FAQ</h2>
+        <p className="mt-3 text-muted">Clear answers before we start a build.</p>
       </FadeIn>
 
       <ul className="mt-10 divide-y divide-line border-y border-line">
@@ -27,7 +27,10 @@ export function Faq() {
                 className="flex w-full items-center justify-between gap-4 py-5 text-left"
                 onClick={() => setOpen(isOpen ? -1 : i)}
               >
-                <span className="font-serif text-xl md:text-2xl">{item.q}</span>
+                <span className="font-display text-lg font-semibold text-accent">
+                  {String(i + 1).padStart(2, "0")}.
+                </span>
+                <span className="flex-1 text-lg md:text-xl">{item.q}</span>
                 <span aria-hidden className="text-muted">
                   {isOpen ? "–" : "+"}
                 </span>

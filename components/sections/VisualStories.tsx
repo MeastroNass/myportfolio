@@ -34,7 +34,7 @@ export function VisualStories() {
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <FadeIn>
           <p className="text-[11px] uppercase tracking-[0.22em] text-accent">Visual stories</p>
-          <h2 className="mt-3 font-serif text-4xl md:text-5xl">Scenes from the work.</h2>
+          <h2 className="mt-3 font-display text-4xl font-extrabold uppercase tracking-tight md:text-5xl">Scenes from the work.</h2>
         </FadeIn>
       </div>
 

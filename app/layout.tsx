@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Instrument_Serif } from "next/font/google";
+import { Geist, Instrument_Serif, Syne } from "next/font/google";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/lib/content";
 import "./globals.css";
@@ -16,6 +16,12 @@ const instrument = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["700", "800"],
+});
+
 export const metadata: Metadata = {
   title: `${site.name} — ${site.role}`,
   description:
@@ -29,11 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.variable} ${instrument.variable} font-sans antialiased`}>
+      <body className={`${geist.variable} ${instrument.variable} ${syne.variable} font-sans antialiased`}>
         <SmoothScroll />
         <a
           href="#work"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-ink focus:px-4 focus:py-2 focus:text-bg"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-accent focus:px-4 focus:py-2 focus:text-void"
         >
           Skip to work
         </a>

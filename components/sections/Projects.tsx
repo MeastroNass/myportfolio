@@ -46,13 +46,14 @@ export function Projects() {
 
   return (
     <section id="work" className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
-      <FadeIn>
-        <p className="text-[11px] uppercase tracking-[0.22em] text-accent">Selected work</p>
-        <h2 className="mt-3 font-serif text-4xl md:text-5xl">Projects that shipped.</h2>
-        <p className="mt-3 max-w-xl text-muted">Click a card to read what shipped — then send a brief tailored to that kind of work.</p>
+      <FadeIn className="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <h2 className="font-display text-4xl font-extrabold uppercase tracking-tight md:text-5xl">Selected works</h2>
+          <p className="mt-3 max-w-xl text-muted">A look at products I’ve designed, built, and shipped. Click a card for details.</p>
+        </div>
       </FadeIn>
 
-      <div className="mt-12 grid gap-8 sm:grid-cols-2">
+      <div className="mt-12 grid gap-6 sm:grid-cols-2">
         {projects.map((project, i) => (
           <motion.article
             key={project.id}
@@ -68,20 +69,25 @@ export function Projects() {
               onClick={() => setOpenId(project.id)}
               aria-expanded={openId === project.id}
             >
-              <div className="overflow-hidden rounded-[1.25rem] bg-pill">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className="relative overflow-hidden rounded-3xl bg-bg-elevated">
                 <img
                   src={asset(project.image)}
                   alt={project.alt}
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  className="aspect-[16/11] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                 />
-              </div>
-              <div className="mt-4 flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="font-serif text-2xl">{project.title}</h3>
-                  <p className="mt-1 text-sm text-muted">{project.category}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <h3 className="text-2xl font-semibold">{project.title}</h3>
+                  <p className="mt-1 text-sm text-ink/70">{project.category}</p>
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    {project.stack.slice(0, 2).map((tag) => (
+                      <span key={tag} className="rounded-full bg-accent px-3 py-1 text-[11px] font-medium text-void">
+                        {tag}
+                      </span>
+                    ))}
+                    <span className="ml-auto text-sm text-ink/80">{project.year}</span>
+                  </div>
                 </div>
-                <span className="mt-1 text-sm text-ink/70">View details</span>
               </div>
             </button>
           </motion.article>
@@ -108,7 +114,7 @@ function ProjectDialog({ project, onClose }: { project: Project | null; onClose:
         >
           <button
             type="button"
-            className="absolute inset-0 bg-ink/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-void/70 backdrop-blur-sm"
             aria-label="Close project details"
             onClick={onClose}
           />
@@ -157,7 +163,7 @@ function ProjectDialog({ project, onClose }: { project: Project | null; onClose:
                   Open live site
                 </a>
               ) : null}
-              <a href={tailorMail(project)} className="rounded-full bg-ink px-5 py-3 text-sm text-bg">
+              <a href={tailorMail(project)} className="rounded-full bg-accent px-5 py-3 text-sm text-void">
                 Tailor a brief like this
               </a>
               <a

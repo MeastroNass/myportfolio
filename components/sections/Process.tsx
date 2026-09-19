@@ -18,8 +18,8 @@ export function Process() {
       <div className="sticky top-0 flex min-h-dvh items-center overflow-hidden pt-20 pb-8">
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 md:grid-cols-2 md:items-center md:gap-10 md:px-8">
           <div>
-            <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-accent">Process</p>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-pill md:aspect-[4/5]">
+            <p className="mb-4 font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">Process</p>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-bg-elevated md:aspect-[4/5]">
               {processSteps.map((step, i) => (
                 <ProcessImage
                   key={step.title}

@@ -1,19 +1,29 @@
-import { Marquee } from "@/components/motion/Marquee";
+import { FadeIn } from "@/components/motion/FadeIn";
 import { stackLogos } from "@/lib/content";
 
 export function LogoMarquee() {
   return (
-    <section aria-label="Tools" className="border-y border-line py-8">
-      <div className="mx-auto mb-4 max-w-6xl px-5 text-[11px] uppercase tracking-[0.22em] text-muted md:px-8">
-        Trusted on production stacks
-      </div>
-      <Marquee duration={30}>
+    <section id="stack" className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
+      <FadeIn className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <h2 className="font-display text-4xl font-extrabold uppercase tracking-tight md:text-5xl">
+          Tech stack
+        </h2>
+        <p className="max-w-xs text-muted md:text-right">
+          Tools and technologies I use to design, build, and ship reliable software.
+        </p>
+      </FadeIn>
+      <div className="mt-16 grid grid-cols-2 items-center gap-x-10 gap-y-14 sm:grid-cols-3">
         {stackLogos.map((logo) => (
-          <span key={logo} className="font-serif text-2xl text-ink/80 md:text-3xl">
-            {logo}
-          </span>
+          <div key={logo.name} className="flex items-center justify-center gap-3">
+            <img
+              src={logo.src}
+              alt=""
+              className="h-9 w-9 object-contain brightness-0 invert sm:h-10 sm:w-10"
+            />
+            <span className="text-xl font-medium tracking-tight sm:text-2xl">{logo.name}</span>
+          </div>
         ))}
-      </Marquee>
+      </div>
     </section>
   );
 }

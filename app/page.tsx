@@ -1,4 +1,5 @@
 import { About } from "@/components/sections/About";
+import { Contact } from "@/components/sections/Contact";
 import { Faq } from "@/components/sections/Faq";
 import { Footer } from "@/components/sections/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -17,15 +18,16 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <Services />
         <LogoMarquee />
         <Projects />
-        <Services />
-        <About />
         <VisualStories />
+        <About />
         <Process />
         <Testimonials />
-        <Pricing />
         <Faq />
+        <Pricing />
+        <Contact />
       </main>
       <Footer />
     </>

@@ -12,35 +12,44 @@ export const site = {
 };
 
 export const navLinks = [
-  { href: "#work", label: "Work" },
+  { href: "#top", label: "Home" },
   { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#process", label: "Process" },
+  { href: "#work", label: "Work" },
   { href: "#contact", label: "Contact" },
 ] as const;
 
 export const hero = {
   ticker: "Available for projects",
+  displayRole: "SOFTWARE ENGINEER",
   headlineLead: "Hi, I’m Nasiru —",
   headlineRest: "I ship products",
   headlineAccent: "end to end.",
   subhead:
-    "Full-stack software engineer in Abuja. I design, build, and deploy production systems — frontends, APIs, databases, and the workflows that keep them running.",
+    "I design, build, and deploy production systems — frontends, APIs, databases, and the workflows that keep them running.",
+  manifesto:
+    "From idea to launch. I build clean, scalable products — marketplaces, operations tools, and payment flows — engineered to move fast, stay reliable, and perform at real-world scale.",
+  roleLine: "Full-stack engineer at Propabridge",
+  skills: ["React", "Next.js", "Django"],
   primaryCta: { href: "#work", label: "View my work" },
   secondaryCta: { href: "https://wa.me/2348122964973", label: "Message on WhatsApp" },
 };
 
+const si = (slug: string) =>
+  `https://cdn.jsdelivr.net/npm/simple-icons@15/icons/${slug}.svg`;
+
 export const stackLogos = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "Django",
-  "PostgreSQL",
-  "AWS",
-  "Git",
-  "Paystack",
-  "Framer",
+  { name: "React", src: si("react") },
+  { name: "OpenAI", src: si("openai") },
+  { name: "Perplexity", src: si("perplexity") },
+  { name: "Next.js", src: si("nextdotjs") },
+  { name: "Claude", src: si("claude") },
+  { name: "Grok", src: "https://cdn.worldvectorlogo.com/logos/grok-1.svg" },
+  { name: "TypeScript", src: si("typescript") },
+  { name: "Node.js", src: si("nodedotjs") },
+  { name: "Django", src: si("django") },
+  { name: "PostgreSQL", src: si("postgresql") },
+  { name: "AWS", src: "https://cdn.jsdelivr.net/npm/simple-icons@13/icons/amazonwebservices.svg" },
+  { name: "Git", src: si("git") },
 ] as const;
 
 export const projects = [
@@ -49,6 +58,7 @@ export const projects = [
     title: "Propabridge",
     category: "Marketplace",
     href: "https://propabridge.com",
+    year: "2026",
     image: "/work/propabridge-team.jpg",
     alt: "Nasiru with the Propabridge team at GITEX AI Nigeria",
     summary:
@@ -67,6 +77,7 @@ export const projects = [
     title: "Hexacafe",
     category: "Operations",
     href: "https://cafehexa.com",
+    year: "2025",
     image: "/work/hexa-cafe.jpg",
     alt: "Hexa Cafe storefront sign on the building",
     summary:
@@ -84,6 +95,7 @@ export const projects = [
     title: "Ecojindu Shuttle",
     category: "Transport",
     href: "",
+    year: "2025",
     image:
       "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1600&q=80",
     alt: "Coach bus on a road at golden hour",
@@ -102,6 +114,7 @@ export const projects = [
     title: "Listing workflows",
     category: "Product",
     href: "https://propabridge.com",
+    year: "2026",
     image: "/work/property-expo.jpg",
     alt: "Nasiru at a Nigerian real-estate industry expo",
     summary:
@@ -119,6 +132,7 @@ export const projects = [
     title: "Paystack checkout",
     category: "Payments",
     href: "https://cafehexa.com",
+    year: "2025",
     image:
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80",
     alt: "Card payment at a counter",
@@ -137,6 +151,7 @@ export const projects = [
     title: "Dispatch automation",
     category: "Automation",
     href: "",
+    year: "2025",
     image: "/work/build-session.jpg",
     alt: "Building product together over laptops",
     summary:
