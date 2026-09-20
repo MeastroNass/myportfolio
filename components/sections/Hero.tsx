@@ -32,10 +32,10 @@ export function Hero() {
           <span className="block">{roleRest}</span>
         </motion.h1>
 
-        <div className="mt-8 grid min-w-0 items-stretch gap-6 sm:mt-12 lg:mt-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.15fr)_minmax(0,0.9fr)] lg:gap-6">
+        <div className="mt-8 grid min-w-0 gap-6 sm:mt-12 lg:mt-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.15fr)_minmax(0,0.9fr)] lg:grid-rows-[auto_auto] lg:gap-x-6 lg:gap-y-0">
           <motion.div
             variants={animate ? item : undefined}
-            className="order-2 flex max-w-sm flex-col justify-center lg:order-1"
+            className="order-2 flex max-w-sm flex-col justify-center lg:order-none lg:col-start-1 lg:row-span-2 lg:self-center"
           >
             <p className="text-base leading-relaxed text-muted md:text-xl">{hero.subhead}</p>
             <a
@@ -54,8 +54,11 @@ export function Hero() {
             </a>
           </motion.div>
 
-          <motion.div variants={animate ? item : undefined} className="order-1 lg:order-2">
-            <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl lg:max-w-none">
+          <motion.div
+            variants={animate ? item : undefined}
+            className="order-1 mx-auto w-full max-w-sm lg:order-none lg:col-start-2 lg:row-start-1 lg:max-w-none"
+          >
+            <div className="overflow-hidden rounded-2xl">
               <img
                 src={asset("/nasiru.jpg")}
                 alt="Nasiru Lawal Kwargana"
@@ -68,7 +71,10 @@ export function Hero() {
             </div>
           </motion.div>
 
-          <motion.ul variants={animate ? item : undefined} className="order-3 flex h-full flex-col gap-3">
+          <motion.ul
+            variants={animate ? item : undefined}
+            className="order-3 flex flex-col gap-3 lg:order-none lg:col-start-3 lg:row-start-1 lg:h-full"
+          >
             {hero.skills.map((skill) => (
               <li
                 key={skill}
@@ -78,6 +84,16 @@ export function Hero() {
               </li>
             ))}
           </motion.ul>
+
+          <motion.div
+            variants={animate ? item : undefined}
+            className="order-4 mx-auto w-[92%] max-w-sm lg:order-none lg:col-start-2 lg:row-start-2 lg:w-[92%] lg:max-w-none"
+          >
+            <div className="relative z-10 -mt-5 border border-white/15 bg-void px-5 py-5 text-center sm:-mt-7 sm:px-8 sm:py-6">
+              <p className="text-2xl font-semibold tracking-tight sm:text-4xl">{site.name.split(" ")[0]}</p>
+              <p className="mt-2 text-sm text-muted sm:text-base">{hero.roleLine}</p>
+            </div>
+          </motion.div>
         </div>
 
         <motion.p
