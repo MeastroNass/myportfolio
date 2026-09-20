@@ -86,7 +86,7 @@ export function Nav() {
       >
         <div className="flex items-center justify-between px-4 py-3">
           <a href="#top" className="text-sm font-medium" onClick={() => setOpen(false)}>
-            Nasiru
+            {site.shortName}
           </a>
           <button
             type="button"

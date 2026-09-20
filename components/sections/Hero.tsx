@@ -3,9 +3,51 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { staggerContainer as container, staggerItem as item } from "@/components/motion/FadeIn";
 import { BinaryField } from "@/components/motion/BinaryField";
+import { useEffect, useState } from "react";
 import { useMounted } from "@/hooks/useMounted";
 import { hero, site } from "@/lib/content";
 import { asset } from "@/lib/paths";
+
+function TypedName({ text }: { text: string }) {
+  const reduce = useReducedMotion();
+  const mounted = useMounted();
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!mounted) return;
+    if (reduce) {
+      setCount(text.length);
+      return;
+    }
+    setCount(0);
+    const id = window.setInterval(() => {
+      setCount((n) => {
+        if (n >= text.length) {
+          window.clearInterval(id);
+          return n;
+        }
+        return n + 1;
+      });
+    }, 85);
+    return () => window.clearInterval(id);
+  }, [mounted, reduce, text]);
+
+  const shown = text.slice(0, count);
+  const space = shown.indexOf(" ");
+  const first = space === -1 ? shown : shown.slice(0, space);
+  const last = space === -1 ? "" : shown.slice(space + 1);
+
+  return (
+    <p className="min-h-[1.15em] text-2xl font-semibold tracking-tight text-white sm:text-4xl">
+      <span>{first}</span>
+      {space !== -1 ? " " : null}
+      {last ? <span className="text-accent">{last}</span> : null}
+      <span className="ml-0.5 inline-block animate-caret text-accent" aria-hidden>
+        |
+      </span>
+    </p>
+  );
+}
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -61,7 +103,7 @@ export function Hero() {
             <div className="overflow-hidden rounded-2xl">
               <img
                 src={asset("/nasiru.jpg")}
-                alt="Nasiru Lawal Kwargana"
+                alt={site.displayName}
                 width={576}
                 height={1024}
                 fetchPriority="high"
@@ -89,9 +131,9 @@ export function Hero() {
             variants={animate ? item : undefined}
             className="order-4 mx-auto w-[92%] max-w-sm lg:order-none lg:col-start-2 lg:row-start-2 lg:w-[92%] lg:max-w-none"
           >
-            <div className="relative z-10 -mt-5 border border-white/15 bg-void px-5 py-5 text-center sm:-mt-7 sm:px-8 sm:py-6">
-              <p className="text-2xl font-semibold tracking-tight sm:text-4xl">{site.name.split(" ")[0]}</p>
-              <p className="mt-2 text-sm text-muted sm:text-base">{hero.roleLine}</p>
+            <div className="relative z-10 -mt-5 border border-white/20 bg-black px-5 py-5 text-center sm:-mt-7 sm:px-8 sm:py-6">
+              <TypedName text={site.displayName} />
+              <p className="mt-2 text-sm text-white/55 sm:text-base">{hero.roleLine}</p>
             </div>
           </motion.div>
         </div>

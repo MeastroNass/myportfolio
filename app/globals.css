@@ -75,12 +75,31 @@ footer[id] {
   will-change: transform;
 }
 
+@keyframes caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-caret {
+  animation: caret 1s steps(1, end) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   .animate-marquee {
+    animation: none;
+  }
+
+  .animate-caret {
     animation: none;
   }
 }

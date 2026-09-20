@@ -1,6 +1,7 @@
 export const site = {
   name: "Nasiru Lawal Kwargana",
-  shortName: "NLK",
+  displayName: "Naseer Lawan",
+  shortName: "Naseer",
   role: "Full-stack engineer",
   location: "Abuja, Nigeria",
   email: "nasirulawalkwargana@gmail.com",
