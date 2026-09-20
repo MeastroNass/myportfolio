@@ -8,7 +8,7 @@ export function Testimonials() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+    <section className="relative z-10 bg-bg mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
       <FadeIn>
         <h2 className="font-display text-4xl font-extrabold uppercase tracking-tight md:text-5xl">What people say</h2>
         <p className="mt-3 max-w-xl text-muted">He doesn’t just write code — he ships systems people actually use.</p>
