@@ -79,7 +79,7 @@ export function Nav() {
   }, [open]);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-5 z-50 flex justify-center px-4">
+    <header className="pointer-events-none fixed inset-x-0 top-[max(0.75rem,env(safe-area-inset-top))] z-50 flex justify-center px-4">
       <div
         ref={panelRef}
         className="pointer-events-auto w-full max-w-[220px] overflow-hidden rounded-2xl bg-[#111318] shadow-lg shadow-black/50"

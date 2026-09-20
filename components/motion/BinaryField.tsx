@@ -120,7 +120,7 @@ export function BinaryField() {
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none absolute inset-0 z-0 h-full w-full"
+      className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-35 sm:opacity-80"
     />
   );
 }

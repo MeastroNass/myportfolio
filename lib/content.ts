@@ -9,6 +9,7 @@ export const site = {
   github: "https://github.com/MeastroNass",
   phone: "+234 812 296 4973",
   whatsapp: "https://wa.me/2348122964973",
+  pagesUrl: "https://meastronass.github.io/myportfolio",
 };
 
 export const navLinks = [

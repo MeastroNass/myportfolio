@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Instrument_Serif, Syne } from "next/font/google";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/lib/content";
@@ -23,10 +23,48 @@ const syne = Syne({
   weight: ["700", "800"],
 });
 
+const title = `${site.name} — ${site.role}`;
+const description =
+  "Abuja-based full-stack engineer shipping production systems across frontend, backend, and operations.";
+const ogImage = `${site.pagesUrl}/og.jpg`;
+
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.role}`,
-  description:
-    "Abuja-based full-stack engineer shipping production systems across frontend, backend, and operations.",
+  metadataBase: new URL(site.pagesUrl),
+  title,
+  description,
+  applicationName: site.name,
+  authors: [{ name: site.name }],
+  keywords: ["full-stack engineer", "Abuja", "Next.js", "React", "Nasiru Lawal Kwargana"],
+  alternates: { canonical: site.pagesUrl },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: site.pagesUrl,
+    siteName: site.name,
+    title,
+    description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${site.name}, full-stack engineer in Abuja`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [ogImage],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#071422",
 };
 
 export default function RootLayout({

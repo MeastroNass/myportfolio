@@ -13,9 +13,9 @@ export function LogoMarquee() {
           Tools and technologies I use to design, build, and ship reliable software.
         </p>
       </FadeIn>
-      <div className="mt-16 grid grid-cols-2 items-center gap-x-10 gap-y-14 sm:grid-cols-3">
+      <div className="mt-10 grid grid-cols-2 items-center gap-x-4 gap-y-8 sm:mt-16 sm:grid-cols-3 sm:gap-x-10 sm:gap-y-14">
         {stackLogos.map((logo) => (
-          <div key={logo.name} className="flex items-center justify-center gap-3">
+          <div key={logo.name} className="flex min-w-0 items-center justify-center gap-2 sm:gap-3">
             <img
               src={asset(logo.src)}
               alt=""
@@ -23,9 +23,9 @@ export function LogoMarquee() {
               height={40}
               loading="lazy"
               decoding="async"
-              className="h-9 w-9 object-contain brightness-0 invert sm:h-10 sm:w-10"
+              className="h-7 w-7 shrink-0 object-contain brightness-0 invert sm:h-10 sm:w-10"
             />
-            <span className="text-xl font-medium tracking-tight sm:text-2xl">{logo.name}</span>
+            <span className="truncate text-sm font-medium tracking-tight sm:text-2xl">{logo.name}</span>
           </div>
         ))}
       </div>

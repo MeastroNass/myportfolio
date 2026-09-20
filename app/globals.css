@@ -27,16 +27,28 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+@media (max-width: 639px) {
+  .font-display.text-4xl,
+  .font-display.text-5xl,
+  .font-display.md\:text-5xl {
+    font-size: clamp(1.65rem, 8vw, 2.15rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
 }
 
 section[id],
 footer[id] {
   scroll-margin-top: 5.5rem;
-}
-
-body {
-  background: var(--bg);
-  color: var(--ink);
 }
 
 ::selection {

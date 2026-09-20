@@ -39,7 +39,7 @@ export function Contact() {
           </a>
           <a href={`mailto:${site.email}`} className="block">
             <p className="text-sm text-muted">Email</p>
-            <p className="text-lg">{site.email}</p>
+            <p className="text-lg break-all">{site.email}</p>
           </a>
           <div>
             <p className="text-sm text-muted">Location</p>

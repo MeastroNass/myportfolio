@@ -17,7 +17,7 @@ function Stat({ value, suffix, label }: { value: number; suffix: string; label: 
 
   return (
     <div ref={ref}>
-      <p className="font-display text-5xl font-extrabold text-accent md:text-6xl">
+      <p className="font-display text-3xl font-extrabold text-accent sm:text-5xl md:text-6xl">
         {n}
         {suffix}
       </p>
