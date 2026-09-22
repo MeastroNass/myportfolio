@@ -9,19 +9,23 @@ export function SmoothScroll() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduce.matches) return;
 
-    const lenis = new Lenis({
-      autoRaf: true,
-      lerp: 0.075,
-      smoothWheel: true,
-      anchors: true,
-    });
+    try {
+      const lenis = new Lenis({
+        autoRaf: true,
+        lerp: 0.075,
+        smoothWheel: true,
+        anchors: true,
+      });
 
-    document.documentElement.style.scrollBehavior = "auto";
+      document.documentElement.style.scrollBehavior = "auto";
 
-    return () => {
-      lenis.destroy();
-      document.documentElement.style.scrollBehavior = "";
-    };
+      return () => {
+        lenis.destroy();
+        document.documentElement.style.scrollBehavior = "";
+      };
+    } catch {
+      return undefined;
+    }
   }, []);
 
   return null;

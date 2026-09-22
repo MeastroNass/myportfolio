@@ -34,7 +34,8 @@ export function BinaryField() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const parent = canvas?.parentElement;
+    if (!canvas || !parent) return;
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
@@ -42,75 +43,64 @@ export function BinaryField() {
     let rows = 0;
     let size = 16;
     let cells: string[] = [];
-    let raf = 0;
-    let frame = 0;
-    let running = true;
+    let lastW = 0;
+    let lastH = 0;
+    let visible = true;
+    let interval = 0;
 
     const glyph = () => GLYPHS[(Math.random() * GLYPHS.length) | 0];
 
-    const resize = () => {
-      const parent = canvas.parentElement;
-      if (!parent) return;
+    const layout = () => {
       const width = parent.clientWidth;
       const height = parent.clientHeight;
-      const dpr = width < 700 ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
+      if (width < 8 || height < 8) return;
+      if (Math.abs(width - lastW) < 2 && Math.abs(height - lastH) < 2) return;
+      lastW = width;
+      lastH = height;
+      const dpr = width < 700 ? 1 : Math.min(window.devicePixelRatio || 1, 1.25);
+      canvas.width = Math.max(1, Math.floor(width * dpr));
+      canvas.height = Math.max(1, Math.floor(height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      size = width < 700 ? 18 : 16;
-      cols = Math.ceil(width / size);
-      rows = Math.ceil(height / size);
+      size = width < 700 ? 20 : 18;
+      cols = Math.min(72, Math.ceil(width / size));
+      rows = Math.min(48, Math.ceil(height / size));
       cells = Array.from({ length: cols * rows }, glyph);
       paint(ctx, width, height, cells, cols, rows, size);
     };
 
-    let visible = true;
-
-    const tick = () => {
-      if (!running) return;
-      if (visible && !document.hidden) {
-        frame += 1;
-        if (frame % 8 === 0) {
-          const mutations = Math.max(16, Math.floor(cells.length * 0.01));
-          for (let i = 0; i < mutations; i++) {
-            cells[(Math.random() * cells.length) | 0] = glyph();
-          }
-          const parent = canvas.parentElement;
-          if (parent) {
-            paint(ctx, parent.clientWidth, parent.clientHeight, cells, cols, rows, size);
-          }
-        }
+    const flicker = () => {
+      if (!visible || document.hidden || reduce || cells.length === 0) return;
+      const mutations = Math.max(8, Math.floor(cells.length * 0.008));
+      for (let i = 0; i < mutations; i++) {
+        cells[(Math.random() * cells.length) | 0] = glyph();
       }
-      raf = window.requestAnimationFrame(tick);
+      paint(ctx, lastW, lastH, cells, cols, rows, size);
     };
 
-    resize();
-    const observer = new ResizeObserver(resize);
-    if (canvas.parentElement) observer.observe(canvas.parentElement);
+    layout();
+    const ro = new ResizeObserver(layout);
+    ro.observe(parent);
 
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        visible = !!entry?.isIntersecting;
-      },
-      { threshold: 0 },
-    );
+    const io = new IntersectionObserver(([entry]) => {
+      visible = !!entry?.isIntersecting;
+    });
     io.observe(canvas);
 
+    if (!reduce) interval = window.setInterval(flicker, 180);
+
     const onVis = () => {
-      running = document.visibilityState === "visible";
-      if (running && !reduce) raf = window.requestAnimationFrame(tick);
-      else window.cancelAnimationFrame(raf);
+      if (document.hidden) {
+        window.clearInterval(interval);
+        interval = 0;
+      } else if (!reduce && !interval) {
+        interval = window.setInterval(flicker, 180);
+      }
     };
     document.addEventListener("visibilitychange", onVis);
 
-    if (!reduce) raf = window.requestAnimationFrame(tick);
-
     return () => {
-      running = false;
-      window.cancelAnimationFrame(raf);
-      observer.disconnect();
+      window.clearInterval(interval);
+      ro.disconnect();
       io.disconnect();
       document.removeEventListener("visibilitychange", onVis);
     };
@@ -120,7 +110,7 @@ export function BinaryField() {
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-35 sm:opacity-80"
+      className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-35 sm:opacity-70"
     />
   );
 }
