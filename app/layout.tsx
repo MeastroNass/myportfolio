@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Instrument_Serif, Syne } from "next/font/google";
-import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/lib/content";
 import { asset } from "@/lib/paths";
 import "./globals.css";
@@ -26,21 +25,31 @@ const syne = Syne({
 const title = `${site.name} — ${site.role}`;
 const description =
   "Abuja-based full-stack engineer shipping production systems across frontend, backend, and operations.";
-const ogImage = `${site.pagesUrl}/og.jpg`;
+
+function publicSiteUrl() {
+  const vercel =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+    (process.env.VERCEL_URL && !process.env.VERCEL_URL.includes("-git-") ? process.env.VERCEL_URL : "");
+  if (vercel) return `https://${vercel.replace(/^https?:\/\//, "")}`;
+  return site.pagesUrl;
+}
+
+const origin = publicSiteUrl();
+const ogImage = `${origin}/og.jpg`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.pagesUrl),
+  metadataBase: new URL(origin),
   title,
   description,
   applicationName: site.name,
   authors: [{ name: site.name }],
-  keywords: ["full-stack engineer", "Abuja", "Next.js", "React", "Nasiru Lawal Kwargana"],
-  alternates: { canonical: site.pagesUrl },
+  keywords: ["full-stack engineer", "Abuja", "Next.js", "React", "Naseer Lawan"],
+  alternates: { canonical: origin },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: site.pagesUrl,
-    siteName: site.name,
+    url: origin,
+    siteName: site.displayName,
     title,
     description,
     images: [
@@ -48,7 +57,7 @@ export const metadata: Metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: `${site.name}, full-stack engineer in Abuja`,
+        alt: `${site.displayName}, full-stack engineer in Abuja`,
       },
     ],
   },
@@ -78,7 +87,6 @@ export default function RootLayout({
         <link rel="preload" as="image" href={asset("/nasiru.jpg")} fetchPriority="high" />
       </head>
       <body className={`${geist.variable} ${instrument.variable} ${syne.variable} font-sans antialiased`}>
-        <SmoothScroll />
         <a
           href="#work"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-accent focus:px-4 focus:py-2 focus:text-void"

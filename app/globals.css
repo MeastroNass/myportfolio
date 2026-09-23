@@ -88,6 +88,12 @@ footer[id] {
   animation: caret 1s steps(1, end) infinite;
 }
 
+.binary-wallpaper {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='168' height='84'><text x='6' y='18' fill='%23bacadc' fill-opacity='0.38' font-family='ui-monospace,monospace' font-size='13'>0 1 0 1 0 1 0 1 0 1</text><text x='6' y='39' fill='%23bacadc' fill-opacity='0.26' font-family='ui-monospace,monospace' font-size='13'>1 0 1 X 1 0 1 + 1 0</text><text x='6' y='60' fill='%23bacadc' fill-opacity='0.34' font-family='ui-monospace,monospace' font-size='13'>0 1 0 1 = 1 0 1 0 1</text><text x='6' y='81' fill='%23bacadc' fill-opacity='0.22' font-family='ui-monospace,monospace' font-size='13'>1 0 ~ 0 1 0 1 0 1 0</text></svg>");
+  background-size: 168px 84px;
+  mask-image: radial-gradient(ellipse at center, black 42%, transparent 78%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
